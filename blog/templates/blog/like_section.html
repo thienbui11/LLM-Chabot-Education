@@ -1,0 +1,14 @@
+<form action="{% url 'post-like' %}" method="POST">
+    {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if liked %}
+            <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btnhrt"><i class="fas fa-heart"></i></button>
+        {% else %}
+            <button id="like" type="submit" name="post_id" value="{{post.id}}" class="btn btnhrt"><i class="far fa-heart"></i></button>
+        {% endif %}
+    {% else %}
+        <small>Hãy đăng nhập để thích bài viết</small>
+    {% endif %}
+    - {{total_likes}} lượt thích
+</form>

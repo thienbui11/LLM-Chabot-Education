@@ -1,0 +1,500 @@
+{% extends "blog/base.html" %}
+
+{% block title %}Chat bot{% endblock %}
+
+{% block content %}
+
+{% load static %}
+<style>
+    body, html {
+        height: 70%;
+    }
+
+    .messages-box {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .messages-list {
+        padding-left: 0;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        list-style: none;
+        word-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .message-text {
+        padding: 3px;
+        border-radius: 5px;
+    }
+
+    .sent {
+        align-self: flex-end;
+    }
+
+    .received {
+        align-self: flex-start;
+    }
+
+    .message-form {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px;
+        background-color: #f8f9fa;
+    }
+
+    .message-input {
+        flex: 1;
+        border-radius: 0;
+        border-right: none;
+    }
+
+    .btn-send {
+        border-radius: 0;
+    }
+
+    .chat-container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .bg-grey {
+        background-color: #DCDCDC !important;
+    }
+    .bg-alice {
+        background-color: #CBF0FF !important;
+    }
+    .responses {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Căn các phần tử theo chiều dọc */
+    }
+
+    .response-container {
+        margin-bottom: 20px; /* Khoảng cách giữa các response */
+    }
+
+    /* Style cho khung phản hồi */
+    .response-item {
+        padding: 15px;
+        background-color: #f8f9fa; /* Màu nền nhẹ */
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        line-height: 1.6;
+        font-size: 14px;
+        color: #333;
+    }
+
+    /* Căn chỉnh cho nút Like và Dislike */
+    .response-actions {
+        text-align: left; /* Căn trái */
+        margin-top: 10px;
+    }
+
+    .response-actions .btn {
+        min-width: 80px;
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+
+    .response-actions .btn + .btn {
+        margin-left: 10px; /* Khoảng cách giữa các nút */
+    }
+        
+    
+    
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<div class="col-md-10 m-auto">
+    <div class="container content-section px-0 py-0">
+        <div class="bg-gray py-1 px-3">
+            <p class="h5 mb-0 py-2">  
+                <span class="img-cont2">              
+                    <img src="https://img.icons8.com/?size=100&id=L3uh0mNuxBXw&format=png&color=000000" alt="user" width="50" height="50" class="rounded-circle">
+                        <span class="online-circle3"></span>  
+                </span>
+                &nbsp;&nbsp;Chat bot
+            </p>
+            <hr>
+        </div>
+        <div class="card-body messages-box">
+            <ul class="list-unstyled messages-list">
+                {% for chat in chats %}
+                    {% if chat.user == request.user %}
+                        <!-- Tin nhắn người dùng -->
+                        <li class="sent bg-primary rounded py-2 px-3 mb-2 media w-75 ml-auto mb-3">
+                            <div class="message-text">
+                                <div class="mb-0 text-white message-content">
+                                    {{ chat.message }}
+                                </div>
+                            </div>
+                        </li>
+        
+                        <!-- Khung Response -->
+                        <li class="message responses d-flex flex-column mb-2">
+                            <!-- Container flex cho 2 response, luôn luôn sử dụng row -->
+                            <div class="response-container d-flex flex-row justify-content-between w-100">
+                                <div class="d-flex flex-column w-100 pr-2">
+                                    <!-- Khung Response 1 -->
+                                    <div class="response-item bg-grey rounded py-2 px-3">
+                                        {% if chat.response_1 %}
+                                            <div class="message-text">
+                                                <p class="mb-0 text-dark message-content">
+                                                    {{ chat.response_1|safe }}
+                                                </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="message-text">
+                                                <div class="mb-0 text-dark message-content">
+                                                    &nbsp;
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    {% comment %} {% if chat.response_2 %}
+                                    <div class="response-actions">
+                                        <button class="btn-sm" onclick="rateResponse('{{ chat.id }}', 'response_1', 'like')">
+                                            <img src="{% static 'blog/images/like.png' %}" alt="Like" class="icon-btn " style="height: 30px;" >
+                                        </button>
+                                        
+                                        <button class="btn-sm" onclick="rateResponse('{{ chat.id }}', 'response_1', 'dislike')">
+                                            <img src="{% static 'blog/images/unlike.png' %}" alt="Dislike" class="icon-btn" style="height: 30px;">
+                                        </button>
+                                    </div>
+                                    {% endif %} {% endcomment %}
+                                </div>
+        
+                                <!-- Khung Response 2 (Ẩn nếu không có response_2) -->
+                                {% if chat.response_2 %}
+                                <div class="d-flex flex-column w-100 pl-2">
+                                    <div class="response-item bg-alice rounded py-2 px-3">
+                                        <div class="message-text">
+                                            <div class="mb-0 text-dark message-content">
+                                                {{ chat.response_2|safe }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Nút Like/Dislike cho Response 2 -->
+                                    {% comment %} <div class="response-actions mt-2">
+                                        <button class="btn-sm" onclick="rateResponse('{{ chat.id }}', 'response_2', 'like')">
+                                            <img src="{% static 'blog/images/like.png' %}" alt="Like" class="icon-btn " style="height: 30px;" >
+                                        </button>
+                                        <button class="btn-sm" onclick="rateResponse('{{ chat.id }}', 'response_2', 'dislike')">
+                                            <img src="{% static 'blog/images/unlike.png' %}" alt="Dislike" class="icon-btn" style="height: 30px;">
+                                        </button>
+                                    </div> {% endcomment %}
+                                </div>
+                                {% endif %}
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <div id="selectedActionItem" style="display: none;">
+                <div id="selectedActionContent"></div>
+            </div>
+        </div>
+    <form class="bg-light chat-form">
+        {% csrf_token %}
+        <div class="input-group">
+            <input type="text" class="form-control message-input rounded-0 border-0 py-4 bg-light" placeholder="Nhập tin nhắn...">
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-primary btn-send">Gửi</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const processMessageContent = (content) => {
+            content = content.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>');
+            content = content.replace(/(\d+\. )/g, '<br>$1');
+            content = content.replace(/\*\s?/g, '<br>- ');
+            content = content.replace(/([.:])\s*-\s+/g, '$1<br>- ');
+    
+            return content;
+        };
+    
+        document.querySelectorAll('.response-item').forEach(o => {
+            o.innerHTML = processMessageContent(o.innerText);
+        });
+    
+        const messagesList = document.querySelector('.messages-list');
+        const messageForm = document.querySelector('.chat-form');
+        const messageInput = document.querySelector('.message-input');
+    
+        const scrollToBottom = () => {
+            messagesList.scrollTop = messagesList.scrollHeight;
+        };
+    
+        messageForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+        
+            const message = messageInput.value.trim();
+            if (message.length === 0) return;
+        
+            // Hiển thị tin nhắn người dùng
+            const userMessageItem = document.createElement('li');
+            userMessageItem.classList.add('message', 'sent');
+            userMessageItem.innerHTML = `
+                <div class="message-text bg-primary rounded py-2 px-3 mb-2 media w-75 ml-auto mb-3">
+                    <div class="message-content mb-0 text-white">
+                        ${processMessageContent(message)}
+                    </div>
+                </div>`;
+            messagesList.appendChild(userMessageItem);
+            messageInput.value = '';
+            scrollToBottom();
+        
+            // Tạo khung phản hồi
+            const responseItem = document.createElement('li');
+            responseItem.classList.add('message', 'responses', 'd-flex', 'flex-column', 'mb-2');
+        
+            // Tạo container cho hai response
+            const responseContainer = document.createElement('div');
+            responseContainer.classList.add('response-container', 'd-flex', 'flex-row', 'justify-content-between', 'w-100');
+            responseItem.appendChild(responseContainer);
+        
+            // Khung Response 1
+            const response1Wrapper = document.createElement('div');
+            response1Wrapper.classList.add('d-flex', 'flex-column', 'w-100', 'pr-2');
+            const response1Item = document.createElement('div');
+            response1Item.classList.add('response-item', 'bg-grey', 'rounded', 'py-2', 'px-3');
+            response1Item.innerHTML = `
+                <div class="message-text">
+                    <div class="mb-0 text-dark message-content"></div>
+                </div>
+                <div class="response-actions mt-2">
+                    <button class="btn-sm like-btn" data-feedback-id="feedback_1" data-response-type="response_1" data-action="like">
+                        <img src="/static/blog/images/like.png" alt="Like" class="icon-btn" style="height: 30px;">
+                    </button>
+                    <button class="btn-sm dislike-btn" data-feedback-id="feedback_1" data-response-type="response_1" data-action="dislike">
+                        <img src="/static/blog/images/unlike.png" alt="Dislike" class="icon-btn" style="height: 30px;">
+                    </button>
+                </div>`;
+            response1Wrapper.appendChild(response1Item);
+            responseContainer.appendChild(response1Wrapper);
+        
+            // Khung Response 2
+            const response2Wrapper = document.createElement('div');
+            response2Wrapper.classList.add('d-flex', 'flex-column', 'w-100', 'pl-2');
+            const response2Item = document.createElement('div');
+            response2Item.classList.add('response-item', 'bg-alice', 'rounded', 'py-2', 'px-3');
+            response2Item.style.display = 'none'; // Mặc định ẩn
+            response2Item.innerHTML = `
+                <div class="message-text">
+                    <div class="mb-0 text-dark message-content"></div>
+                </div>
+                <div class="response-actions mt-2">
+                    <button class="btn-sm like-btn" data-feedback-id="feedback_2" data-response-type="response_2" data-action="like">
+                        <img src="/static/blog/images/like.png" alt="Like" class="icon-btn" style="height: 30px;">
+                    </button>
+                    <button class="btn-sm dislike-btn" data-feedback-id="feedback_2" data-response-type="response_2" data-action="dislike">
+                        <img src="/static/blog/images/unlike.png" alt="Dislike" class="icon-btn" style="height: 30px;">
+                    </button>
+                </div>`;
+            response2Wrapper.appendChild(response2Item);
+            responseContainer.appendChild(response2Wrapper);
+        
+            messagesList.appendChild(responseItem);
+        
+            const response1Content = response1Item.querySelector('.message-content');
+            const response2Content = response2Item.querySelector('.message-content');
+            const loadingSpinner = document.createElement('div');
+            loadingSpinner.classList.add('loading-spinner');
+            loadingSpinner.innerHTML = `<div class="spinner"></div>`;
+            response1Item.querySelector('.message-text').appendChild(loadingSpinner);
+        
+            scrollToBottom();
+     
+            {% comment %} fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'message': message
+                }),
+                timeout: 30000
+            })
+                .then((response) => {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+        
+                let localBuffer = ''; // Bộ đệm phản hồi
+        
+                function readChunk() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                            loadingSpinner.remove(); // Xóa hiệu ứng chờ khi hoàn tất
+                            MathJax.typesetPromise();
+                            return;
+                        }
+        
+                        const textChunk = decoder.decode(value, { stream: true });
+                        localBuffer += textChunk; // Thêm dữ liệu mới vào bộ đệm
+        
+                        // Phân tích phản hồi thành hai phần: response_2 và selected_action
+                        const splitResponse = localBuffer.split('response_2:');
+                        const response1 = splitResponse[0].trim(); // Phần trước 'response_2:'
+                        let response2 = ''; // Để chứa nội dung của response_2 (không có selected_action)
+                        let selectedAction = ''; // Để chứa giá trị selected_action
+
+                        if (splitResponse[1]) {
+                            // Tìm vị trí của "selected_action:"
+                            const actionIndex = splitResponse[1].indexOf('selected_action:');
+                            if (actionIndex !== -1) {
+                                // Phân tách response_2 và selected_action
+                                response2 = splitResponse[1].slice(0, actionIndex).trim(); // Lấy phần trước 'selected_action'
+                                selectedAction = splitResponse[1].slice(actionIndex).split(':')[1]?.trim() || ''; // Lấy giá trị selected_action
+                            } else {
+                                // Không tìm thấy 'selected_action', response_2 là toàn bộ phần còn lại
+                                response2 = splitResponse[1].trim();
+                            }
+                        }
+
+                        // Cập nhật nội dung cho response_1
+                        response1Content.innerHTML = processMessageContent(response1);
+
+                        // Nếu có response_2, hiển thị nội dung và khung
+                        if (response2) {
+                            response2Content.innerHTML = processMessageContent(response2);
+                            response2Item.style.display = 'block';
+                        }
+
+                        // Nếu có selected_action, hiển thị trên giao diện
+                        if (selectedAction) {
+                            selectedActionContent.innerHTML = `<b>${selectedAction}</b>`;
+                            selectedActionItem.style.display = 'block';
+                        }
+
+        
+                        scrollToBottom();
+                        readChunk();
+                    });
+                }
+        
+                readChunk();
+            }).catch((error) => {
+                console.error('Error streaming response:', error);
+                response1Content.innerHTML = `<span class="text-danger">Error receiving response.</span>`;
+                loadingSpinner.remove(); // Xóa spinner nếu có lỗi
+            }); {% endcomment %}
+
+            fetch('', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                    'message': message
+                }),
+                timeout: 30000
+            })
+            .then((response) => {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+        
+                let localBuffer = ''; // Bộ đệm phản hồi
+        
+                function readChunk() {
+                    reader.read().then(({ done, value }) => {
+                        if (done) {
+                            loadingSpinner.remove(); // Xóa hiệu ứng chờ khi hoàn tất
+                            MathJax.typesetPromise();
+                            return;
+                        }
+        
+                        const textChunk = decoder.decode(value, { stream: true });
+                        localBuffer += textChunk;
+        
+                        const splitResponse = localBuffer.split('response_2:');
+                        const response1 = splitResponse[0].trim();
+                        let response2 = ''; 
+                        let selectedAction = '';
+
+                        if (splitResponse[1]) {
+                            const actionIndex = splitResponse[1].indexOf('selected_action:');
+                            if (actionIndex !== -1) {
+                                response2 = splitResponse[1].slice(0, actionIndex).trim(); // Lấy phần trước 'selected_action'
+                                selectedAction = splitResponse[1].slice(actionIndex).split(':')[1]?.trim() || ''; // Lấy giá trị selected_action
+                            } else {
+                                response2 = splitResponse[1].trim();
+                            }
+                        }
+
+                        // Cập nhật nội dung cho response_1
+                        response1Content.innerHTML = processMessageContent(response1);
+
+                        // Nếu có response_2, hiển thị nội dung và khung
+                        if (response2) {
+                            response2Content.innerHTML = processMessageContent(response2);
+                            response2Item.style.display = 'block';
+                        }
+
+                        // Nếu có selected_action, hiển thị trên giao diện
+                        if (selectedAction) {
+                            selectedActionContent.innerHTML = `<b>${selectedAction}</b>`;
+                            selectedActionItem.style.display = 'block';
+                        }
+
+        
+                        scrollToBottom();
+                        readChunk(); // Đọc phần tiếp theo nếu còn
+                    });
+                }
+        
+                readChunk();
+            })
+            
+            // Gắn sự kiện Like/Dislike
+            responseItem.addEventListener('click', (event) => {
+                const button = event.target.closest('button');
+                if (button && (button.classList.contains('like-btn') || button.classList.contains('dislike-btn'))) {
+                    const feedbackId = button.dataset.feedbackId;
+                    const responseType = button.dataset.responseType;
+                    const action = button.dataset.action;
+        
+                    // Gửi phản hồi về server qua API /update_feedback
+                    fetch('https://zep.hcmute.fit/7889/update_feedback', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            "feedback_id": feedback_id,
+                            "response_type": response_type,
+                            "action": action,
+                        }),
+                    }).then((response) => response.json())
+                      .then((data) => {
+                          if (data.error) {
+                              console.error(`Error: ${data.error}`);
+                          } else {
+                              alert('Phản hồi đã được ghi nhận!');
+                          }
+                      })
+                      .catch((err) => {
+                          console.error('Error submitting feedback:', err);
+                      });
+                }
+            });
+        });
+                        
+    });
+</script>
+    
+<script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+{% endblock %}
