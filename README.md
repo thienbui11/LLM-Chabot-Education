@@ -4,6 +4,17 @@
 - Nguyen Thi Phu
   
 ## Demo
+FAQ responses
+
+![image](https://github.com/user-attachments/assets/66750412-2b33-4500-8163-0d5c2806ff6a)
+
+![image](https://github.com/user-attachments/assets/c03e6b25-71e4-4167-ba50-574e67acb640)
+
+RAG responses
+
+![image](https://github.com/user-attachments/assets/4c273b1f-4eb2-431e-a06c-62e6bbd535a2)
+
+![image](https://github.com/user-attachments/assets/d5313db3-f8bc-44a4-8123-a845ae543dc0)
 
 ## Overview
 Chatbots have become crucial in everyday modern life. It is not until large language models began their era that people interact with chatbox on screen for informative answers. Nonetheless, the rises of Artificial Intelligence provide numerous solutions for advanced improvements, enabling clients to take advantage of smarter, human-like systems. On the other side, such agents may not deliver ideal or even appropriate data in some specific contexts. This paper introduces a chatbot that were built to be fit in Vietnamese university society. We focus on designing a system that combines open-source language model and Retrieval-Augmented Generation (RAG) approach for higer conversasion quality. Furthermore, Deep Q-Learning, a reinforcement learning method, is preferred to keep the consistency over time at a low cost.
