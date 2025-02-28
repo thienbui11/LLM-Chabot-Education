@@ -81,5 +81,16 @@ This project presented the development of an LLM-based chatbot designed specific
 
 Although there are limitations in data scope, contextual understanding, and response time, the team has gained valuable lessons and established a foundation for future improvements. With plans to enhance accuracy, contextual analysis capabilities, and comprehensive data integration, the chatbot is expected to become a highly effective tool, contributing to the modernization of management and improving the learning experience for students.
 
-
+## References
+    [1] Georgia State University, "Pounce Chatbot," an automated assistant supporting students with enrollment and financial aid inquiries.  https://mainstay.com/case-study/how-georgia-state-university-supports-every-student-with-personalized-text-messaging/ 
+    [2] Deakin University, "Genie," a digital assistant offering 24/7 support for academic and administrative queries. 
+    [3] Interacting with educational chatbots: A systematic review https://link.springer.com/article/10.1007/s10639-022-11177-3
+    [4] “Sổ tay sinh viên 2023”, HCMC University of Technology And Education. https://sao.hcmute.edu.vn/ArticleId/e8db4387-3f43-4770-a67c-90fa85ce009f/so-tay-sinh-vien-2023
+    [5] School’s community Q&A service, HCMC University of Technology And Education. https://tuvansinhvien.hcmute.edu.vn/ 
+    [6] Cheonsu Jeong. 2024. A Study on the Implementation Method of an Agent-Based Advanced RAG System Using Graph.   https://arxiv.org/pdf/2407.19994 
+    [7] Samina Amin, Deep Q-Learning(DQN) https://medium.com/@samina.amin/deep-q-learning-dqn-71c109586bae 
+    [8] Mandar Kulkarni, Praveen Tangarajan, Kyung Kim, Anusua Trivedi. 2024. Reinforcement Learning for Optimizing RAG for Domain Chatbots https://arxiv.org/pdf/2401.06800 
+    [9] Yunfan Gaoa , Yun Xiongb , Xinyu Gaob , Kangxiang Jiab , Jinliu Panb , Yuxi Bic , Yi Daia , Jiawei Suna , Meng Wangc , and Haofen Wang. 2024. Retrieval-Augmented Generation for Large Language Models: A Survey https://arxiv.org/pdf/2312.10997 
+    [10] Tobias Abdon, Creating a Streaming Chat Application with Django & OpenAI: A Step-By-Step Guide https://discovergen.ai/article/creating-a-streaming-chat-application-with-django/ 
+    [11] Zackary Rackauckas, RAG-FUSION: A NEW TAKE ON RETRIEVAL-AUGMENTED GENERATION https://arxiv.org/pdf/2402.03367 
 
