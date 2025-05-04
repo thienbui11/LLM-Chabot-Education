@@ -73,7 +73,11 @@ As no question was provided, the remaining data was compiled from the school’s
     
 ### 2. Experimental results
 
-![image](https://github.com/user-attachments/assets/583537e7-8483-432b-a7bb-6d3a1ddaf76f)
+![image](https://github.com/user-attachments/assets/948efa6f-04c9-4a24-ad18-66ce02ef96fa)
+
+![image](https://github.com/user-attachments/assets/d692da89-3401-4029-beaf-94f7035348fb)
+
+![image](https://github.com/user-attachments/assets/d2605647-82df-4108-9ce2-60abf96ad51a)
 
 ## Conclusion
 
