@@ -2,7 +2,7 @@
 ## Author
 - Bui Quang Thien
 - Nguyen Thi Phu
-  
+- 
 ## Demo
 FAQ responses
 
@@ -17,7 +17,7 @@ RAG responses
 ![image](https://github.com/user-attachments/assets/d5313db3-f8bc-44a4-8123-a845ae543dc0)
 
 ## Overview
-Chatbots have become crucial in everyday modern life. It is not until large language models began their era that people interact with chatbox on screen for informative answers. Nonetheless, the rises of Artificial Intelligence provide numerous solutions for advanced improvements, enabling clients to take advantage of smarter, human-like systems. On the other side, such agents may not deliver ideal or even appropriate data in some specific contexts. This paper introduces a chatbot that were built to be fit in Vietnamese university society. We focus on designing a system that combines open-source language model and Retrieval-Augmented Generation (RAG) approach for higer conversasion quality. Furthermore, Deep Q-Learning, a reinforcement learning method, is preferred to keep the consistency over time at a low cost.
+Chatbots have become crucial in everyday modern life. It is not until large language models began their era that people interact with chat box on screen for informative answers. Nonetheless, the rises of artificial intelligence provide numerous solutions for advanced improvements, enabling clients to take advantage of smarter, human-like systems. On the other side, such agents may not deliver ideal or even appropriate data in some specific contexts, particularly when dealing with nuanced local information. This paper introduces a chatbot that were built to be fit in Vietnamese university societies. We focus on designing a system that combines open-source language model and Retrieval-Augmented Generation (RAG) approach for higher conversation quality with limited real-world Q&A dataset. Furthermore, DeepnQ-Learning, a reinforcement learning method, is applied to keep thenconsistency over time at an acceptable cost. Our multiple experimentsnshow promising results, indicating the potential for highly effective adoption within Vietnam institutions.
 
 ## Method
 The method combines modern natural language processing (NLP) techniques with advanced data querying tools to assist in answering students' questions quickly and accurately.
@@ -77,20 +77,21 @@ As no question was provided, the remaining data was compiled from the school’s
 
 ## Conclusion
 
-This project presented the development of an LLM-based chatbot designed specifically for the Vietnamese higher education environment. By integrating an open-source language model with the Retrieval-Augmented Generation (RAG) approach, the system ensures more accurate and contextually relevant responses to students' inquiries. Additionally, a Frequently Asked Questions (FAQ) module is implemented to enhance response efficiency for common queries. The incorporation of Deep Q-Learning into the chatbot offers a significant advantage by allowing the system to self-improve over time, ensuring that it adapts to the evolving needs of students and the university community. By continuously optimizing its response strategy based on user interactions, the chatbot maintains a high level of relevance and accuracy in its answers. This approach not only enhances the user experience but also ensures that the system remains efficient and scalable, even as the volume of users and queries increases.
+This paper presents the development of an LLM-based chatbot designed specifically for the Vietnamese higher education environment. By integrating an open-source language model with the Retrieval-Augmented Generation (RAG) approach, the system ensures more accurate and contextually  relevant responses to students' inquiries. Additionally, a Frequently Asked Questions (FAQ) system is implemented to enhance response efficiency for common queries. The incorporation of Deep Q-Learning into the chatbot offers a significant advantage by allowing the system to self-improve over time, ensuring that it adapts to the evolving needs of students and the university community. By continuously optimizing its response strategy based on user interactions, the chatbot maintains a high
+level of relevance and accuracy in its answers. This approach not only enhances the user experience but also ensures that the system remains efficient and scalable.
 
-Although there are limitations in data scope, contextual understanding, and response time, the team has gained valuable lessons and established a foundation for future improvements. With plans to enhance accuracy, contextual analysis capabilities, and comprehensive data integration, the chatbot is expected to become a highly effective tool, contributing to the modernization of management and improving the learning experience for students.
+Although there are limitations in hardware and data availability, we have gained valuable lessons and established a foundation for future improvements. With plans to enhance accuracy, contextual analysis capabilities, and comprehensive data integration, the chatbot is expected to become an effective tool, contributing to the modern university and improving the learning experience for students.
 
 ## References
     [1] Georgia State University, "Pounce Chatbot," an automated assistant supporting students with enrollment and financial aid inquiries.  https://mainstay.com/case-study/how-georgia-state-university-supports-every-student-with-personalized-text-messaging/ 
-    [2] Deakin University, "Genie," a digital assistant offering 24/7 support for academic and administrative queries. 
-    [3] Interacting with educational chatbots: A systematic review https://link.springer.com/article/10.1007/s10639-022-11177-3
-    [4] “Sổ tay sinh viên 2023”, HCMC University of Technology And Education. https://sao.hcmute.edu.vn/ArticleId/e8db4387-3f43-4770-a67c-90fa85ce009f/so-tay-sinh-vien-2023
-    [5] School’s community Q&A service, HCMC University of Technology And Education. https://tuvansinhvien.hcmute.edu.vn/ 
-    [6] Cheonsu Jeong. 2024. A Study on the Implementation Method of an Agent-Based Advanced RAG System Using Graph.   https://arxiv.org/pdf/2407.19994 
-    [7] Samina Amin, Deep Q-Learning(DQN) https://medium.com/@samina.amin/deep-q-learning-dqn-71c109586bae 
-    [8] Mandar Kulkarni, Praveen Tangarajan, Kyung Kim, Anusua Trivedi. 2024. Reinforcement Learning for Optimizing RAG for Domain Chatbots https://arxiv.org/pdf/2401.06800 
-    [9] Yunfan Gaoa , Yun Xiongb , Xinyu Gaob , Kangxiang Jiab , Jinliu Panb , Yuxi Bic , Yi Daia , Jiawei Suna , Meng Wangc , and Haofen Wang. 2024. Retrieval-Augmented Generation for Large Language Models: A Survey https://arxiv.org/pdf/2312.10997 
-    [10] Tobias Abdon, Creating a Streaming Chat Application with Django & OpenAI: A Step-By-Step Guide https://discovergen.ai/article/creating-a-streaming-chat-application-with-django/ 
-    [11] Zackary Rackauckas, RAG-FUSION: A NEW TAKE ON RETRIEVAL-AUGMENTED GENERATION https://arxiv.org/pdf/2402.03367 
+    [2] G. Atwell, “Deakin's Genie: a virtual digital assistant out of the bottle”, Deakin University. Accessed: Feb. 10 2025. [Online]. Available: https://www.deakin.edu.au/about-deakin/news-and-media-releases/articles/deakins-genie-a-virtual-digital-assistant-out-
+of-the-bottle
+    [3] S. Moola, “Benefits of AI in higher education”, REGENT BUSINESS SCHOOL - Higher Education Institution. Accessed: Feb. 10 2025. [Online]. Available: https://regent.ac.za/blog/benefits-of-ai-in-higher-education
+    [4] Gao, Yunfan, et al., “Retrieval-Augmented Generation for Large Language Models: A Survey”, arXiv preprint arXiv:2312.10997, 2024
+    [5] S. Gupta, R. Ranjan, S. N. Singh, “A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions”, arXiv preprint arXiv:2410.12837, 2024
+    [6] M. Kulkarni, P. Tangarajan, K. Kim, A. Trivedi, “Reinforcement Learning for Optimizing RAG for Domain Chatbots”, arXiv preprint arXiv:2401.06800, 2024
+    [7] H. Dong, Z. Ding, and S. Zhang, Deep Reinforcement Learning: Fundamentals, Research and Applications. 1st ed. Singapore: Springer, 2020, p. 123
+    [8] Serway, Raymond A.; Moses, Clement J.; Moyer, Curt A, Modern Physics. 3rd ed. Cengage Learning, 2004, p. 481.
+    [9] The Office of Admissions and Student Affairs, “Sổ tay sinh viên 2023”, HCMC University of Technology and Education. Accessed: Feb. 12 2025. [Online]. Available: https://sao.hcmute.edu.vn/ArticleId/e8db4387-3f43-4770-a67c-90fa85ce009f/so-tay-sinh-vien-2023 
+    [10] University Q&A service, HCMC University of Technology and Education. Accessed: Feb. 15 2025. [Online]. Available: https://tuvansinhvien.hcmute.edu.vn/
 
