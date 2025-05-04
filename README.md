@@ -84,8 +84,7 @@ Although there are limitations in hardware and data availability, we have gained
 
 ## References
     [1] Georgia State University, "Pounce Chatbot," an automated assistant supporting students with enrollment and financial aid inquiries.  https://mainstay.com/case-study/how-georgia-state-university-supports-every-student-with-personalized-text-messaging/ 
-    [2] G. Atwell, “Deakin's Genie: a virtual digital assistant out of the bottle”, Deakin University. Accessed: Feb. 10 2025. [Online]. Available: https://www.deakin.edu.au/about-deakin/news-and-media-releases/articles/deakins-genie-a-virtual-digital-assistant-out-
-of-the-bottle
+    [2] G. Atwell, “Deakin's Genie: a virtual digital assistant out of the bottle”, Deakin University. Accessed: Feb. 10 2025. [Online]. Available: https://www.deakin.edu.au/about-deakin/news-and-media-releases/articles/deakins-genie-a-virtual-digital-assistant-out-of-the-bottle.
     [3] S. Moola, “Benefits of AI in higher education”, REGENT BUSINESS SCHOOL - Higher Education Institution. Accessed: Feb. 10 2025. [Online]. Available: https://regent.ac.za/blog/benefits-of-ai-in-higher-education
     [4] Gao, Yunfan, et al., “Retrieval-Augmented Generation for Large Language Models: A Survey”, arXiv preprint arXiv:2312.10997, 2024
     [5] S. Gupta, R. Ranjan, S. N. Singh, “A Comprehensive Survey of Retrieval-Augmented Generation (RAG): Evolution, Current Landscape and Future Directions”, arXiv preprint arXiv:2410.12837, 2024
