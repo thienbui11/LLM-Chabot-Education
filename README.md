@@ -2,7 +2,7 @@
 ## Author
 - Bui Quang Thien
 - Nguyen Thi Phu
-- 
+
 ## Demo
 FAQ responses
 
